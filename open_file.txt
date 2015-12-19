@@ -1,0 +1,1 @@
+This is the contents of my file. It is required by the open_file.rb file.

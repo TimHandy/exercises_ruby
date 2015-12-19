@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths wf-inconsolata-n5-active wf-proximanova-i4-active wf-proximanova-n1-active wf-proximanova-n3-active wf-proximanova-n4-active wf-proximanova-n7-active wf-proximanova-n8-active wf-active"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting Started with Minitest - Semaphore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" media="all" href="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/application-cdc5f74d0867dd826081edaeab3b66f356412e3a8b8e27b6.css">
+
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="5NvmIH/HCT5TV/SvEUD5DYMqvVMg9xYaoPLiwHSdS2PwNFLPW0xjS9/H+J33Ajb71wEwY7bIHKPegtg6vr5gmQ==">
+
+    <link rel="shortcut icon" href="https://semaphoreci.com/assets/favicons/favicon.ico" type="image/x-ico">
+<link rel="apple-touch-icon" href="https://semaphoreci.com/assets/favicons/apple-touch-icon.png">
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-152x152.png">
+
+    <!-- Google Analytics -->
+<script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/5a4fa3f352e8e483e784ca53ab144bb62d11b84a.js" async="" type="text/javascript"></script><script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/i.js" async="" type="text/javascript"></script><script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/widgets.js" id="twitter-wjs"></script><script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/st.js" async=""></script><script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/analytics.js" async=""></script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-28072419-1', 'auto', {'cookieDomain': 'semaphoreci.com', 'legacyCookieDomain': 'semaphoreci.com'});
+ga('send', 'pageview');
+
+// Trigger an event 5 seconds after a scroll.
+// When it goes out, closing the page will not count as a bounce.
+setTimeout(function() {
+  window.onscroll = function() {
+    window.onscroll = null; // Only track the event once
+    ga('send', 'event', 'scroll', 'read', {'page': window.location.pathname });
+  }
+}, 5000);
+
+</script>
+<!-- End Google Analytics -->
+
+    <script type="text/javascript">
+  var _kmq = _kmq || [];
+  var _kmk = _kmk || '5a4fa3f352e8e483e784ca53ab144bb62d11b84a';
+  function _kms(u){
+    setTimeout(function(){
+        var d = document, f = d.getElementsByTagName('script')[0],
+        s = d.createElement('script');
+        s.type = 'text/javascript'; s.async = true; s.src = u;
+        f.parentNode.insertBefore(s, f);
+        }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');
+  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+
+</script>
+
+
+
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+      _st('install','RbFV7fCCJRFrhxKo7XGr','2.0.0');
+</script>
+
+
+      <meta property="og:url" content="https://semaphoreci.com/community/tutorials/getting-started-with-minitest">
+  <meta property="og:title" content="Getting Started with Minitest">
+  <meta property="og:description" content="Learn how to integrate Minitest into your Ruby project and reap the benefits of test-driven development.">
+  <meta property="og:image" content="https://d1dkupr86d302v.cloudfront.net/community/assets/social-media-icons/icon-tag-ruby-88aab620e88d3082da200baadf02fd971efab4302f48c486f9db71fc24ea7833.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@semaphoreci">
+  <meta name="twitter:title" content="Getting Started with Minitest">
+  <meta name="twitter:description" content="Learn how to integrate Minitest into your Ruby project and reap the benefits of test-driven development.">
+  <meta name="twitter:image" content="https://d1dkupr86d302v.cloudfront.net/community/assets/social-media-icons/icon-tag-ruby-88aab620e88d3082da200baadf02fd971efab4302f48c486f9db71fc24ea7833.png">
+  <meta name="twitter:url" content="https://semaphoreci.com/community/tutorials/getting-started-with-minitest">
+
+  <link rel="alternate" type="application/atom+xml" title="Semaphore CI Community Tutorials" href="https://semaphoreci.com/community/tutorials.atom">
+
+    <link rel="alternate" type="application/atom+xml" title="Semaphore CI Community Tutorials on Ruby" href="https://semaphoreci.com/community/tags/ruby.atom">
+<link rel="canonical" href="https://semaphoreci.com/community/tutorials/getting-started-with-minitest"><style type="text/css">.tk-inconsolata{font-family:"inconsolata",monospace;}.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}</style><link media="all" href="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/l.css" rel="stylesheet">
+  <script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/button.js" async="" charset="utf-8" type="text/javascript"></script><link href="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/new_embed-8628524621adce36c5b73fa8d89c8258.css" type="text/css" rel="stylesheet"><style type="text/css">.st-install-RbFV7fCCJRFrhxKo7XGr .st-ui-result .st-ui-type-heading { color:#0089d7 !important }
+.st-install-RbFV7fCCJRFrhxKo7XGr .st-ui-result em {font-style:normal; font-weight:bold; background-color:#f6fcfe !important}</style></head>
+
+  <body data-prefix="tutorial" data-signed-in="false" data-current-user-id="" data-root="https://semaphoreci.com/community">
+
+    <header>
+  <nav class="navbar navbar-default main-navigation" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <ul class="site-nav-cta list-unstyled pull-right">
+  <li class="pull-right"><a class="btn btn-cta" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/getting-started-with-minitest">Sign In</a></li>
+  <li class="pull-right"><a class="btn btn-cta" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/getting-started-with-minitest">Sign Up</a></li>
+</ul>
+
+
+      <div class="navbar-header">
+        <a class="navbar-brand logo-semaphore" href="https://semaphoreci.com/"><img alt="Semaphore - Continuous integration and deployment tutorials" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/logo-semaphore-f219995f65abb14a7760cafb0c37f909b4241debca2c8.svg" width="181"></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://semaphoreci.com/features/">Features</a></li>
+          <li><a href="https://semaphoreci.com/pricing/">Pricing</a></li>
+          <li><a href="https://semaphoreci.com/docs/">Documentation</a></li>
+          <li><a class="active" href="https://semaphoreci.com/community">Tutorials</a></li>
+          <li><a href="https://semaphoreci.com/blog">Blog</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</header>
+
+
+    
+
+<script>
+
+  var _newCommentPath = "/community/tutorials/getting-started-with-minitest/comments";
+  var _comments = [];
+
+    var _tag = {"id":5,"name":"Ruby","type":"ActsAsTaggableOn::Tag","subscribed":null,"path":"/community/subscription"};
+  var _tutorial = {"id":61,"name":"Getting Started with Minitest","type":"Tutorial","subscribed":null,"path":"/community/subscription"};
+
+  var _like = {"path":"/community/tutorials/getting-started-with-minitest/likes","count":2,"liked":null};
+</script>
+
+
+
+<div class="page-illustration page-illustration-none">
+
+  <div class="container">
+    <nav class="navigation navigation-top">
+
+  <div class="navigation-group navigation-group--search">
+  <form class="search-form" role="search">
+    <input autocapitalize="off" autocorrect="off" autocomplete="off" class="form-control search-input" placeholder="Search tutorials" type="text">
+  </form>
+</div>
+
+  <div class="navigation-group"><a class="explore tags" href="https://semaphoreci.com/community/tags">Explore tags</a></div>
+
+  <div class="navigation-group">
+  <a href="https://semaphoreci.com/community/tutorials.atom"><span class="icons-share icon-rss">RSS</span>RSS</a>
+</div>
+
+  <div class="navigation-group navigation-group-floated-oposite">
+  <a class="nav-link-back" href="https://semaphoreci.com/community/tutorials">All tutorials</a>
+</div>
+
+
+    <div class="navigation-group navigation-group-fluid">
+  <span class="earn">Earn up to $200</span>
+  <a class="btn btn-primary pull-right" href="https://semaphoreci.com/community/write-for-us">Write a tutorial</a>
+</div>
+
+
+</nav>
+
+  </div>
+
+  <div class="post-photo text-center">
+    
+  </div> <!-- post-photo -->
+
+  <div ng-app="commentsApp" ng-controller="CommentListController as commentListController" class="container ng-scope">
+
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+
+        <article class="single-item block-longform" itemscope="" itemtype="http://schema.org/Article">
+
+          <header class="post-header">
+            <div class="media">
+    <a class="media-left" itemprop="author" itescope="" itemtype="http://schema.org/Person" href="https://semaphoreci.com/community/authors/fteem">
+      <img class="avatar" itemprop="image" itescope="" itemtype="http://schema.org/ImageObject" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/81b70354d05caf6bdf7e7953713c1cd4.jpeg" alt="81b70354d05caf6bdf7e7953713c1cd4" height="88" width="88">
+</a>
+  <div class="media-body">
+    <ul class="list-inline post-info">
+        <li itemprop="author" itemscope="" itemtype="http://schema.org/Person"><a itemprop="name" href="https://semaphoreci.com/community/authors/fteem">Ilija Eftimov</a></li>
+
+      <li>
+        <a href="https://semaphoreci.com/community/tutorials/getting-started-with-minitest#comments">
+          <span itemprop="commentCount">
+            <ng-pluralize count="commentListController.comments.length" when="{'one': '1 comment', 'other': '{} comments'}">0 comments</ng-pluralize>
+          </span>
+</a>      </li>
+
+      <li itemprop="keywords">
+        Tagged as
+          <a href="https://semaphoreci.com/community/tags/ruby">Ruby</a>
+          <a href="https://semaphoreci.com/community/tags/testing">Testing</a>
+      </li>
+    </ul>
+  </div>
+  <div class="media-right media-twitter">
+  <iframe src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/tweet_button.html" title="Twitter Tweet Button" style="position: static; visibility: visible; width: 60px; height: 20px;" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" allowtransparency="true" scrolling="no" id="twitter-widget-0" frameborder="0"></iframe>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div> 
+
+</div>
+
+          </header>
+
+          
+            <h1 class="page-title" itemprop="name">Getting Started with Minitest</h1>
+
+            <p class="page-subtitle page-intro" itemprop="about">Learn how to integrate Minitest into your Ruby project and reap the benefits of test-driven development.</p>
+
+          <div class="jumbotron post-meta block-subscribe-to-tag">
+  <img class="jumbotron_img" itemprop="image" title="Ruby" alt="Ruby" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/icon-tag-ruby-d69c67035da5a02f58ace90986e988e3b3e1ac9a550920.svg" height="40" width="40">
+  <span class="subscription-tag subscription-tag-top">  <a href="#" class="btn btn-primary btn-sm" id="subscribe-tag">Subscribe to new Ruby tutorials</a>
+</span>
+  <div class="tutorial-like pull-right"><div class="likes ">
+    <a data-toggle="modal" href="#modal-log-in-like" class="like modal-login-like" id="like" title="Heart this article, show the appreciation to the author"></a>
+  <span class="likes-count">
+    2
+  </span>
+</div></div>
+</div>
+
+
+          
+            <div class="side-block-brought-to-you text-center" itemprop="sourceOrganization" itemscope="" itemtype="http://schema.org/Organization">
+  <strong>Brought to you by</strong>
+  <span itemprop="logo"><img alt="" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/logo-c76e6b47ed66c2dec1bf75bc14e383d5e789a880c4322de5f17db3a.svg" width="44"></span>
+  <h3 itemprop="name">Semaphore</h3>
+  <a id="semaphore-learn-more" class="btn btn-primary" itemprop="url" href="https://semaphoreci.com/">Learn More</a>
+</div>
+
+
+            <section id="tutorial-content" class="block-center-img" itemprop="text" ng-non-bindable="">
+              <h2>What is Minitest?</h2>
+
+<p><a href="https://github.com/seattlerb/minitest">Minitest</a> is a testing tool for Ruby
+that provides a complete suite of testing facilities. It also supports
+behaviour-driven development, mocking and benchmarking. With the release of
+Ruby 1.9, it was added to Ruby's standard library, which increased its
+popularity. Even though at first it gives off the impression of a very small
+testing tool, it has a very rich set of features which make it a powerful tool
+to have under your belt.</p>
+
+<p>In this tutorial, we will explore how to install Minitest, use it in your
+projects, and get started on the journey of test-driven development in Ruby.</p>
+
+<h2>Building a Small Project</h2>
+
+<p>We'll learn the basics of Minitest by building a small Magic 8 Ball library.
+Like any Magic 8 Ball, it will respond to yes or no questions with predefined
+answers. We will build this project using test-driven development (TDD), using
+the test-first approach. If you are unsure what these phrases mean, you can head
+over to  the <a href="https://semaphoreci.com/community/tutorials/behavior-driven-development">Behaviour-driven Development tutorial</a>
+to learn more about these concepts and then come back to complete this tutorial.</p>
+
+<h3>Setting Up Minitest</h3>
+
+<p>Let's start a new Ruby project where we'll configure Minitest as a dependency
+via Bundler by adding it to our Gemfile.</p>
+
+<p>Create a new directory, and put the following code in your Gemfile:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># Gemfile</span>
+<span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"minitest"</span>
+</pre></div>
+
+<p>Next, open your project's directory in terminal, and run <code>bundle install</code> to
+install the latest version of Minitest in your bundle. The output should be
+similar to this:</p>
+
+<div class="highlight highlight-bash"><pre>Fetching gem metadata from https://rubygems.org/.........
+Fetching version metadata from https://rubygems.org/..
+Resolving dependencies...
+Using minitest 5.8.2
+Using bundler 1.10.6
+Bundle <span class="nb">complete</span>! <span class="m">1</span> Gemfile dependency, <span class="m">2</span> gems now installed.
+Use <span class="sb">`</span>bundle show <span class="o">[</span>gemname<span class="o">]</span><span class="sb">`</span> to see where a bundled gem is installed.
+</pre></div>
+
+<h3>Your First Unit Test</h3>
+
+<p>Let's create a new file called <code>magic_ball.rb</code>, and write our first test in it.
+We'll start by writing both the test and the production code in the same file.
+The class will be separated from the test in the later steps of this tutorial.
+We'll use the test-first approach, meaning that we will write the test first,
+and the production code afterwards.</p>
+
+<p>Start by opening <code>magic_ball.rb</code> in your favorite editor and typing the
+following:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>As you can see, every test file in Minitest is just a class. This shows
+Minitest's power - it's just plain Ruby, no fancy syntax involved. While
+every test file is a class, every test case is just a plain method.</p>
+
+<p>Let's add our first test case:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Our first method or test case is that we expect the method <code>MagicBall#ask</code> to
+return a value. In other words, it should never return <code>nil</code>.</p>
+
+<p>Let's run our test. Run the file from your terminal by typing
+<code>ruby magic_ball.rb</code>. The output should be similar to the following:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">Run</span> <span class="ss">options</span><span class="p">:</span> <span class="o">--</span><span class="n">seed</span> <span class="mi">10646</span>
+
+<span class="c1"># Running:</span>
+
+<span class="n">E</span>
+
+<span class="no">Finished</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mo">0014</span><span class="mi">84</span><span class="n">s</span><span class="p">,</span> <span class="mi">674</span><span class="o">.</span><span class="mo">0230</span> <span class="n">runs</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="o">.</span><span class="mo">0000</span> <span class="n">assertions</span><span class="o">/</span><span class="n">s</span><span class="o">.</span>
+
+  <span class="mi">1</span><span class="p">)</span> <span class="ss">Error</span><span class="p">:</span>
+<span class="no">MagicBallTest</span><span class="c1">#test_ask_returns_an_answer:</span>
+<span class="ss">NameError</span><span class="p">:</span> <span class="n">uninitialized</span> <span class="n">constant</span> <span class="no">MagicBallTest</span><span class="o">::</span><span class="no">MagicBall</span>
+    <span class="n">magic_ball</span><span class="o">.</span><span class="n">rb</span><span class="p">:</span><span class="mi">5</span><span class="ss">:in</span> <span class="sb">`test_ask_returns_an_answer'</span>
+
+<span class="sb">1 runs, 0 assertions, 0 failures, 1 errors, 0 skips</span>
+</pre></div>
+
+<p>As you can see, Minitest is so simple that its tests are run just like any other
+Ruby program. The output above shows the report from the tests that were run,
+including information about test duration and errors.</p>
+
+<p>Our test case failed because the <code>MagicBall</code> class does not exist. Let's add the
+class and rerun the tests:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>We will add the class only, without any methods. The whole idea of the
+test-first approach is to do your work in small increments (adding just a bit of
+code), and then rerun your tests until the test you've written passes. Let's run
+the test again, with <code>ruby magic_ball.rb</code>:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 55028
+
+<span class="c"># Running:</span>
+
+E
+
+Finished in 0.001323s, 755.8619 runs/s, 0.0000 assertions/s.
+
+  1<span class="o">)</span> Error:
+MagicBallTest#test_ask_returns_an_answer:
+NoMethodError: undefined method <span class="sb">`</span>ask<span class="s1">' for #&lt;MagicBall:0x007f8d0d0db168&gt;</span>
+<span class="s1">    magic_ball.rb:6:in `test_ask_returns_an_answer'</span>
+
+<span class="m">1</span> runs, <span class="m">0</span> assertions, <span class="m">0</span> failures, <span class="m">1</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>As you can see, the error has changed. Instead of an undefined class error, we
+are now getting the undefined method error. Let's add the method and rerun the
+test:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Running the test again will show an output similar to the following:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 23565
+
+<span class="c"># Running:</span>
+
+F
+
+Finished in 0.001138s, 878.9169 runs/s, 878.9169 assertions/s.
+
+  1<span class="o">)</span> Failure:
+MagicBallTest#test_ask_returns_an_answer <span class="o">[</span>magic_ball.rb:5<span class="o">]</span>:
+Failed assertion, no message given.
+
+<span class="m">1</span> runs, <span class="m">1</span> assertions, <span class="m">1</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>Again, our test failed, but now we are getting a different error. In TDD,
+getting a different error means progress.</p>
+
+<p>The error now states that the assertion has failed. In Minitest's language, this
+means that the <code>assert</code> method in the test did not receive anything. In other
+words, no message was delivered to it. Making this test pass is easy — we can
+make the <code>MagicBall#ask</code> method return anything other than <code>nil</code>.</p>
+
+<p>Let's make it pass:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="s2">"Whatever"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Since the ask method will return the "Whatever" string, the test will pass
+because the returned value is not <code>nil</code>. Running the test returns the following
+output:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 34802
+
+<span class="c"># Running:</span>
+
+.
+
+Finished in 0.001434s, 697.4182 runs/s, 697.4182 assertions/s.
+
+<span class="m">1</span> runs, <span class="m">1</span> assertions, <span class="m">0</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>Our first test passes, but our code is still not working properly. With this
+implementation, it will return "Whatever" for any question. Let's fix this. We
+need an additional test that will be more specific, and that will get our code
+to return a meaningful answer.</p>
+
+<p>To make our Magic Ball more meaningful, let's add some answers for it to return.
+<a href="https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers">According to Wikipedia</a>,
+every Magic 8 Ball has some standard predefined answers. We will put these
+answers in an array, which will be a constant called <code>ANSWERS</code> in our
+<code>MagicBall</code> class.</p>
+
+<p>Let's write a test for this:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="s2">"Whatever"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>By adding a new test case, we are enforcing the class to have an array constant
+called <code>ANSWERS</code>. Let's run the test again:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 56425
+
+<span class="c"># Running:</span>
+
+.E
+
+Finished in 0.001249s, 1601.3862 runs/s, 800.6931 assertions/s.
+
+  1<span class="o">)</span> Error:
+MagicBallTest#test_predefined_answers:
+NameError: uninitialized constant MagicBall::ANSWERS
+    magic_ball.rb:10:in <span class="sb">`</span>test_predefined_answers<span class="err">'</span>
+
+<span class="m">2</span> runs, <span class="m">1</span> assertions, <span class="m">0</span> failures, <span class="m">1</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>As you can see, the test has failed. This is because the constant
+<code>MagicBall::ANSWERS</code> is not present. Let's add it to our class:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="no">ANSWERS</span> <span class="o">=</span> <span class="o">[]</span>
+
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="s2">"Whatever"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>If we rerun the test, it will pass. But should it? The <code>ANSWERS</code> array is empty,
+so it won't do us any good. Let's add another test that will confirm that the
+<code>ANSWERS</code> array is not empty:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_not_empty</span>
+    <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="no">ANSWERS</span> <span class="o">=</span> <span class="o">[]</span>
+
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="s2">"Whatever"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>We've added a new assertion. We used <code>refute</code> instead of <code>assert</code> because
+<code>refute</code> expects a false(y) value while assert expects a truth(y) value. In our
+case, <code>refute_empty</code> will fail if the object that is passed as an argument is
+empty, which is exactly what we want. With this test, we want to ensure that the
+<code>ANSWERS</code> array will have at least one predefined answer, so we can use it in
+our <code>MagicBall#ask</code> method.</p>
+
+<p>Let's run the tests again:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 16504
+
+<span class="c"># Running:</span>
+
+..F
+
+Finished in 0.001200s, 2500.7502 runs/s, 3334.3336 assertions/s.
+
+  1<span class="o">)</span> Failure:
+MagicBallTest#test_predefined_answers_is_not_empty <span class="o">[</span>magic_ball.rb:64<span class="o">]</span>:
+Expected <span class="o">[]</span> to not be empty.
+
+<span class="m">3</span> runs, <span class="m">4</span> assertions, <span class="m">1</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>Our brand new error message shows that Minitest expected <code>[]</code> to not be empty.
+This means that we now need to add some answers to the array to make the test
+pass.</p>
+
+<p>Let's do that. First, we will add the predefined answers from the Wikipedia
+article:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_not_empty</span>
+    <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="no">ANSWERS</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">"It is certain"</span><span class="p">,</span>
+    <span class="s2">"It is decidedly so"</span><span class="p">,</span>
+    <span class="s2">"Without a doubt"</span><span class="p">,</span>
+    <span class="s2">"Yes, definitely"</span><span class="p">,</span>
+    <span class="s2">"You may rely on it"</span><span class="p">,</span>
+    <span class="s2">"As I see it, yes"</span><span class="p">,</span>
+    <span class="s2">"Most likely"</span><span class="p">,</span>
+    <span class="s2">"Outlook good"</span><span class="p">,</span>
+    <span class="s2">"Yes"</span><span class="p">,</span>
+    <span class="s2">"Signs point to yes"</span><span class="p">,</span>
+    <span class="s2">"Reply hazy try again"</span><span class="p">,</span>
+    <span class="s2">"Ask again later"</span><span class="p">,</span>
+    <span class="s2">"Better not tell you now"</span><span class="p">,</span>
+    <span class="s2">"Cannot predict now"</span><span class="p">,</span>
+    <span class="s2">"Concentrate and ask again"</span><span class="p">,</span>
+    <span class="s2">"Don't count on it"</span><span class="p">,</span>
+    <span class="s2">"My reply is no"</span><span class="p">,</span>
+    <span class="s2">"My sources say no"</span><span class="p">,</span>
+    <span class="s2">"Outlook not so good"</span><span class="p">,</span>
+    <span class="s2">"Very doubtful"</span>
+  <span class="o">]</span>
+
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="s2">"Whatever"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>If we run the test again, it will pass:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 42118
+
+<span class="c"># Running:</span>
+
+...
+
+Finished in 0.002505s, 1197.5895 runs/s, 1596.7860 assertions/s.
+
+<span class="m">3</span> runs, <span class="m">4</span> assertions, <span class="m">0</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>Now, let's go back to the first test. Although it's passing, it's what we
+call a "false positive test". It appears to be working, but the test's logic is
+actually broken. If you read the test, you'll see that we expect the answer to
+the question to be different from <code>nil</code>. What we actually need is for the answer
+to always be derived from the <code>MagicBall::ANSWERS</code> array.</p>
+
+<p>Let's refactor our test:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert_includes</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span><span class="p">,</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_not_empty</span>
+    <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="c1"># ANSWERS omitted...</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="s2">"Whatever"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Our first test now states that the answer returned from the <code>MagicBall#ask</code>
+method must be <strong>included</strong> in the <code>MagicBall::ANSWERS</code> array.</p>
+
+<p>We'll omit the <code>ANSWERS</code> array in the code examples below in order to save
+space.</p>
+
+<p>Let's run the tests now:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 62725
+
+<span class="c"># Running:</span>
+
+..F
+
+Finished in 0.001448s, 2071.9978 runs/s, 3453.3296 assertions/s.
+
+  1<span class="o">)</span> Failure:
+MagicBallTest#test_ask_returns_an_answer <span class="o">[</span>magic_ball.rb:7<span class="o">]</span>:
+Expected <span class="o">[</span><span class="s2">"It is certain"</span>, <span class="s2">"It is decidedly so"</span>, <span class="s2">"Without a doubt"</span>, <span class="s2">"Yes, definitely"</span>, <span class="s2">"You may rely on it"</span>, <span class="s2">"As I see it, yes"</span>, <span class="s2">"Most likely"</span>, <span class="s2">"Outlook good"</span>, <span class="s2">"Yes"</span>, <span class="s2">"Signs point to yes"</span>, <span class="s2">"Reply hazy try again"</span>, <span class="s2">"Ask again later"</span>, <span class="s2">"Better not tell you now"</span>, <span class="s2">"Cannot predict now"</span>, <span class="s2">"Concentrate and ask again"</span>, <span class="s2">"Don't count on it"</span>, <span class="s2">"My reply is no"</span>, <span class="s2">"My sources say no"</span>, <span class="s2">"Outlook not so good"</span>, <span class="s2">"Very doubtful"</span><span class="o">]</span> to include <span class="s2">"Whatever"</span>.
+
+<span class="m">3</span> runs, <span class="m">5</span> assertions, <span class="m">1</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>As you can see, our test now actually works. It states that it was expected for
+the array of answers to contain "Whatever". However, that's impossible since we
+hard-coded "Whatever" as an answer. Let's change our code so it actually returns
+a random item from the array:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="no">ANSWERS</span><span class="o">.</span><span class="n">sample</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The <code>Array#sample</code> method does just that - it takes a sample item from the
+array. If we run the tests, they will all pass:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 54975
+
+<span class="c"># Running:</span>
+
+...
+
+Finished in 0.001436s, 2088.9750 runs/s, 3481.6250 assertions/s.
+
+<span class="m">3</span> runs, <span class="m">5</span> assertions, <span class="m">0</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>We have now completed one part of the library, but our <code>magic_ball.rb</code> file got
+quite big. Let's split it into two different files. Create a
+<code>magic_ball_test.rb</code> file and move the <code>MagicBallTest</code> class to the newly
+created file.</p>
+
+<p>Next, we need to require the <code>magic_ball.rb</code> file at the top of the file, so
+that the test can use the <code>MagicBall</code> class.</p>
+
+<p>This is what your two files should look like:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball_test.rb</span>
+<span class="nb">require</span> <span class="s2">"minitest/autorun"</span>
+<span class="n">require_relative</span> <span class="s2">"magic_ball"</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert_includes</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span><span class="p">,</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_not_empty</span>
+    <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="no">ANSWERS</span><span class="o">.</span><span class="n">sample</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>As you can see, we required the <code>magic_ball.rb</code> file at the beginning of the
+<code>magic_ball_test.rb</code> file by using the <code>require_relative</code> method, since the
+location of the file in the filesystem is relative to the file that requires it.</p>
+
+<h3>We Must Ask a Question</h3>
+
+<p>When calling the <code>MagicBall#ask</code> method, we should be asking a question.
+A question is a string that ends with a question mark. However, our current
+implementation of the <code>MagicBall#ask</code> method does not validate the question.
+Let's add this functionality.</p>
+
+<p>First, we need a test case. Open <code>magic_ball_test.rb</code> and add a new test case:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball_test.rb</span>
+<span class="nb">require</span> <span class="s2">"minitest/autorun"</span>
+<span class="n">require_relative</span> <span class="s2">"magic_ball"</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert_includes</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span><span class="p">,</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_not_empty</span>
+    <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_raises_error_when_question_is_number</span>
+    <span class="n">assert_raises</span> <span class="s2">"Question has invalid format."</span> <span class="k">do</span>
+      <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+      <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The <code>test_raises_error_when_question_is_number</code> test case uses a new assertion
+that we haven't used before. The <code>assert_raises</code> assertion expects that the code
+in the block it receives will raise an error. In our case, it expects that
+the message of the error will be "Question has invalid format.".</p>
+
+<p>Let's run the test and see the error we get back:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 9870
+
+<span class="c"># Running:</span>
+
+...F
+
+Finished in 0.001582s, 2528.0487 runs/s, 3792.0731 assertions/s.
+
+  1<span class="o">)</span> Failure:
+MagicBallTest#test_raises_error_when_question_is_number <span class="o">[</span>magic_ball_test.rb:20<span class="o">]</span>:
+Question has invalid format..
+StandardError expected but nothing was raised.
+
+<span class="m">4</span> runs, <span class="m">6</span> assertions, <span class="m">1</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>The failure states that it expected a <code>StandardError</code> with a message, but
+nothing was raised. Let's add the production code to our <code>MagicBall</code> class.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="k">raise</span> <span class="s2">"Question has invalid format."</span> <span class="k">unless</span> <span class="n">question</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">question</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="s2">"?"</span>
+    <span class="no">ANSWERS</span><span class="o">.</span><span class="n">sample</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Our <code>MagicBall#ask</code> method validates the question by checking if it's a <code>String</code>
+and if its last character is a question mark.</p>
+
+<p>Let's run the tests again:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 3383
+
+<span class="c"># Running:</span>
+
+...E
+
+Finished in 0.002405s, 1662.8774 runs/s, 1662.8774 assertions/s.
+
+  1<span class="o">)</span> Error:
+MagicBallTest#test_ask_returns_an_answer:
+RuntimeError: Question has invalid format.
+    /Users/ie/dev/community-ile-eftimov-getting-started-with-minitest/project/magic_ball.rb:27:in <span class="sb">`</span>ask<span class="s1">'</span>
+<span class="s1">    magic_ball_test.rb:8:in `test_ask_returns_an_answer'</span>
+
+<span class="m">4</span> runs, <span class="m">4</span> assertions, <span class="m">0</span> failures, <span class="m">1</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>We got another error. If you look closely, the test case that fails is the very
+first one we wrote - <code>MagicBallTest#test_ask_returns_an_answer</code>.</p>
+
+<p>Let's take a look at the test case again:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+  <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+  <span class="n">assert_includes</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span><span class="p">,</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Whatever"</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The test case looks fine, but there's a small problem with it. Instead of
+asking the <code>MagicBall#ask</code> method a question, we are just sending a string -
+"Whatever". Let's change this to an actual question:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball_test.rb</span>
+<span class="nb">require</span> <span class="s2">"minitest/autorun"</span>
+<span class="n">require_relative</span> <span class="s2">"magic_ball"</span>
+
+<span class="k">class</span> <span class="nc">MagicBallTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_ask_returns_an_answer</span>
+    <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">assert_includes</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span><span class="p">,</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Is Minitest awesome?"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_array</span>
+    <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_predefined_answers_is_not_empty</span>
+    <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">test_raises_error_when_question_is_number</span>
+    <span class="n">assert_raises</span> <span class="s2">"Question has invalid format."</span> <span class="k">do</span>
+      <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+      <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>When we run the tests, they will all pass. According to the TDD cycle
+(red-green-refactor), we can refactor our code now that we got the tests to
+pass. One thing that stands out in the code is the <code>unless</code> predicate in the
+<code>MagicBall#ask</code> method. Let's extract that logic in a private method:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball.rb</span>
+<span class="k">class</span> <span class="nc">MagicBall</span>
+  <span class="k">def</span> <span class="nf">ask</span> <span class="n">question</span>
+    <span class="k">raise</span> <span class="s2">"Question has invalid format."</span> <span class="k">unless</span> <span class="n">is_question_valid?</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="no">ANSWERS</span><span class="o">.</span><span class="n">sample</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">is_question_valid?</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">question</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">question</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="s2">"?"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The intention of the raise line in the ask method is now quite clear. The naming
+of the private method shows that an error will be raised if the format of the
+question is invalid. Now that we've completed the refactor, let's run the tests:</p>
+
+<div class="highlight highlight-bash"><pre>Run options: --seed 46746
+
+<span class="c"># Running:</span>
+
+....
+
+Finished in 0.001417s, 2822.6063 runs/s, 4233.9094 assertions/s.
+
+<span class="m">4</span> runs, <span class="m">6</span> assertions, <span class="m">0</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+</pre></div>
+
+<p>Our code works great. We've managed to successfully build a small project
+using test-driven development with Minitest. Let's take a quick tour of another
+great feature of Minitest.</p>
+
+<h2>Minitest::Spec</h2>
+
+<p>For all of you who are used to using RSpec, Minitest has a useful feature called
+Minitest::Spec. It's a complete spec engine that works on top of
+Minitest::Unit, and seamlessly makes test assertions look and feel like spec
+expectations. It's basically a wrapper around the unit testing engine of
+Minitest.</p>
+
+<p>Let's see how we can convert the unit tests assertions that we wrote in
+<code>magic_ball_test.rb</code> into spec expectations.</p>
+
+<p>Create a new file called <code>magic_ball_spec.rb</code>:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># magic_ball_spec.rb</span>
+<span class="nb">require</span> <span class="s2">"minitest/autorun"</span>
+<span class="nb">require</span> <span class="s2">"minitest/spec"</span>
+<span class="n">require_relative</span> <span class="s2">"magic_ball"</span>
+
+<span class="n">describe</span> <span class="no">MagicBall</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s2">"#ask"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"returns an answer"</span> <span class="k">do</span>
+      <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+      <span class="n">assert_includes</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span><span class="p">,</span> <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">"Is Minitest awesome?"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">"predefined answers is array"</span> <span class="k">do</span>
+      <span class="n">assert_kind_of</span> <span class="nb">Array</span><span class="p">,</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">"predefined answers is not empty"</span> <span class="k">do</span>
+      <span class="n">refute_empty</span> <span class="no">MagicBall</span><span class="o">::</span><span class="no">ANSWERS</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">"raises error when question is number"</span> <span class="k">do</span>
+      <span class="n">assert_raises</span> <span class="s2">"Question has invalid format."</span> <span class="k">do</span>
+        <span class="n">magic_ball</span> <span class="o">=</span> <span class="no">MagicBall</span><span class="o">.</span><span class="n">new</span>
+        <span class="n">magic_ball</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>As you can see, although the assertions syntax is different from RSpec's, it
+definitely feels like home for RSpec users.</p>
+
+<h2>Conclusion</h2>
+
+<p>Although simple and minimal, Minitest is a very powerful testing tool for Ruby.
+In this tutorial, we saw how to develop a small project with Minitest using
+test-driven development combined with the test-first approach. This tutorial
+just scratched the surface — there's plenty more to Minitest, so head over to
+Minitest's <a href="http://docs.seattlerb.org/minitest/">documentation</a> for more fun.</p>
+
+<p>The full source code for this tutorial is available on <a href="https://github.com/fteem/minitest-intro">Github</a>.</p>
+
+<h2>References</h2>
+
+<p>Here are some links to Minitest's documentation and API used while writing this
+tutorial:</p>
+
+<ul>
+<li><a href="https://github.com/seattlerb/minitest">Minitest Github repo</a></li>
+<li><a href="http://docs.seattlerb.org/minitest/">Minitest documentation</a></li>
+<li><a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/minitest/rdoc/MiniTest/Assertions.html">Minitest Assertions API</a></li>
+<li><a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/minitest/rdoc/MiniTest/Spec.html">Minitest::Spec API</a></li>
+</ul>
+            </section>
+
+
+          
+            
+            <div class="jumbotron post-meta block-subscribe-to-tag">
+  <img class="jumbotron_img" itemprop="image" title="Ruby" alt="Ruby" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/icon-tag-ruby-d69c67035da5a02f58ace90986e988e3b3e1ac9a550920.svg" height="40" width="40">
+  <span class="subscription-tag subscription-tag-bottom">  <a href="#" class="btn btn-primary btn-sm" id="subscribe-tag">Subscribe to new Ruby tutorials</a>
+</span>
+  <div class="tutorial-like likes"><div class="likes ">
+    <a data-toggle="modal" href="#modal-log-in-like" class="like modal-login-like" id="like" title="Heart this article, show the appreciation to the author"></a>
+  <span class="likes-count">
+    2
+  </span>
+</div></div>
+</div>
+
+        </article>
+
+        
+
+        <section class="page-block text-center">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="title-image"><img class="img-circle" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/81b70354d05caf6bdf7e7953713c1cd4.jpeg" alt="81b70354d05caf6bdf7e7953713c1cd4"></div>
+      <strong>Ilija Eftimov</strong>
+      <p></p><p>Full-stack Ruby on Rails and Elixir developer. Blogs regularly at <a href="http://eftimov.net/">eftimov.net</a>.</p><p></p>
+    </div>
+  </div>
+</section>
+
+
+        <div class="row">
+  <div class="col-xs-12 text-center">
+    <div class="banner-funnel block-longform">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <h3>Set up continuous integration and delivery for your project in a minute.</h3>
+          <p>Fast. Scalable. Easy to use.</p>
+        </div> <!-- col-sm-8 col-sm-offset-2 -->
+      </div> <!-- row -->
+      <a id="semaphore-try-for-free" class="btn btn-success btn-lg" href="https://semaphoreci.com/users/sign_up">Try Semaphore for Free</a>
+    </div>
+  </div>
+</div>
+
+
+        <section class="comments">
+
+  <div class="comments-meta">
+    <div class="row">
+      <div class="col-xs-8 text-left">
+        <div class="comments-count">
+          <span itemprop="commentCount">
+            <ng-pluralize count="commentListController.comments.length" when="{'one': '1 comment', 'other': '{} comments'}">0 comments</ng-pluralize>
+          </span>
+          on this tutorial so far.
+          <span class="subscription-tutorial">  <a href="#modal-log-in-subscribe" data-toggle="modal" class="modal-login-subscription" id="subscribe">Subscribe to new comments</a>
+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="media" id="comments">
+    <!-- ngRepeat: comment in commentListController.comments --><!-- ng-repeat -->
+  </div>
+
+
+
+    <div class="well">
+  <a href="#modal-log-in-comment" class="btn btn-primary btn-xs pull-right" data-toggle="modal">Sign In</a>
+  You must be logged in to comment.
+</div>
+
+
+</section>
+
+
+        
+  <div class="block-creative-commons text-center">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" rel="license" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/88x31.png"></a>
+    <p>This work is licensed under a <span itemprop="license"><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></span>
+  </p></div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="modal-log-in-comment">
+  <div class="modal-dialog modal-dialog-prompt modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="media">
+          <figure class="media-left">
+            <img alt="" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/icon-alert.svg" height="44" width="44">
+          </figure>
+          <div class="media-body">
+            <h3 class="media-heading">To comment you need to have a Semaphore account.</h3>
+
+            <p>With a Semaphore account you can also test and deploy your open source and private projects for free.</p>
+          </div>
+        </div>
+        <div class="modal-dialog-prompt-actions">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="btn btn-primary btn-lg-alt btn-block community-create-account" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/getting-started-with-minitest">Create Account</a>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-default btn-lg-alt btn-block community-sign-in" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/getting-started-with-minitest">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modal-log-in-like">
+  <div class="modal-dialog modal-dialog-prompt modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="media">
+          <figure class="media-left">
+            <img alt="" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/icon-alert.svg" height="44" width="44">
+          </figure>
+          <div class="media-body">
+            <h3 class="media-heading">To like a tutorial you need to have a Semaphore account.</h3>
+
+            <p>With a Semaphore account you can also test and deploy your open source and private projects for free.</p>
+          </div>
+        </div>
+        <div class="modal-dialog-prompt-actions">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="btn btn-primary btn-lg-alt btn-block community-create-account" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/getting-started-with-minitest">Create Account</a>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-default btn-lg-alt btn-block community-sign-in" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/getting-started-with-minitest">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modal-log-in-subscribe">
+  <div class="modal-dialog modal-dialog-prompt modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="media">
+          <figure class="media-left">
+            <img alt="" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/icon-alert.svg" height="44" width="44">
+          </figure>
+          <div class="media-body">
+            <h3 class="media-heading">To subscribe you need to have a Semaphore account.</h3>
+
+            <p>With a Semaphore account you can also test and deploy your open source and private projects for free.</p>
+          </div>
+        </div>
+        <div class="modal-dialog-prompt-actions">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="btn btn-primary btn-lg-alt btn-block community-create-account" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/getting-started-with-minitest">Create Account</a>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-default btn-lg-alt btn-block community-sign-in" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/getting-started-with-minitest">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+    <footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <section class="footer-contact">
+          <div class="pull-left footer-logo">
+            <a href="https://semaphoreci.com/community"><img alt="Semaphore" src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/logo-semaphore-f219995f65abb14a7760cafb0c37f909b4241debca2c8.svg" height="45" width="181"></a>
+          </div>
+          <div class="pull-left">
+            <ul class="list-unstyled">
+              <li>Semaphore is copyright © 2009-2015 Rendered Text.</li>
+              <li>All rights reserved.</li>
+              <li>
+                Follow us on <a href="https://twitter.com/semaphoreci" rel="publisher">Twitter</a>,
+                <a href="https://www.facebook.com/SemaphoreCI" rel="publisher">Facebook</a> and
+                <a href="https://plus.google.com/106136977036322666905" rel="publisher">Google+</a>.
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+      <div class="col-md-2">
+        <section>
+          <h2 class="footer-section-title">Product</h2>
+          <ul class="list-unstyled">
+            <li><a href="https://semaphoreci.com/automatic_testing">Continuous integration</a></li>
+            <li><a href="https://semaphoreci.com/deployment">Continuous deployment</a></li>
+            <li><a href="https://semaphoreci.com/pricing">Pricing</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="col-md-2">
+        <section>
+          <h2 class="footer-section-title">Resources</h2>
+          <ul class="list-unstyled">
+            <li><a href="https://semaphoreci.com/docs">Documentation</a></li>
+            <li><a href="https://semaphoreci.com/community/tutorials">Tutorials</a></li>
+            <li><a href="https://semaphoreci.com/community/open-source">Open source</a></li>
+            <li><a href="https://semaphoreci.com/blog">Blog</a></li>
+            <li><a href="https://semaphoreci.com/docs/api.html">API</a>
+          </li></ul>
+        </section>
+      </div>
+      <div class="col-md-2">
+        <section>
+          <h2 class="footer-section-title">Support</h2>
+          <ul class="list-unstyled">
+            <li><a href="mailto:semaphore@renderedtext.com">Contact us</a></li>
+            <li><a href="https://semaphoreci.com/tos">Terms of service</a></li>
+            <li><a href="https://semaphoreci.com/privacy">Privacy Policy</a></li>
+            <li><a href="https://semaphoreci.com/security">Security</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="col-md-2">
+        <section>
+          <h2 class="footer-section-title">About</h2>
+          <ul class="list-unstyled">
+            <li><a href="https://semaphoreci.com/about">About Semaphore</a></li>
+            <li><a href="http://renderedtext.com/">Company</a></li>
+            <li><a href="https://semaphoreci.com/our_users">Customers</a></li>
+            <li><a href="https://www.dropbox.com/s/uybgnqx86hwm3q0/Semaphore_Media_Kit.zip?dl=0">Media kit</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/angular.js"></script><script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/angular-sanitize.js"></script>
+    
+      <script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/huv6nfe.js"></script>
+      <script>try{Typekit.load();}catch(e){}</script>
+    
+    <script src="Getting%20Started%20with%20Minitest%20-%20Semaphore_files/application-9df97226caf1bfab51f90f4da4576fa230c9304b08c0dec41.js"></script>
+  
+
+
+<div id="st-injected-content" data-st-install-key="RbFV7fCCJRFrhxKo7XGr" class="st-injected-content-generated st-install-RbFV7fCCJRFrhxKo7XGr">
+<div class="st-ui-embed st-search-chrome-overlay-output st-search-escape-hide-outputs st-search-zoom-on-mobile" style="display: none;">
+    <div class="st-ui-overlay st-search-hide-outputs"></div>
+  <!-- Swiftype input and results overlay -->
+  <div class="st-ui-container st-ui-container-overlay  st-ui-injected-overlay-container ">
+    <!-- HEADER -->
+    <div class="st-ui-container-header_bar st-position-container">
+        <section class="st-ui-header">
+          <form>
+            <input autocapitalize="off" autocorrect="off" autocomplete="off" class="st-default-search-input st-search-set-focus" placeholder="Search this site" id="st-overlay-search-input" type="text">
+          </form>
+          <span class="st-ui-search-icon"></span>
+
+            <a class="st-ui-close-button st-search-hide-outputs">Close</a>
+
+        </section>
+    </div>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="st-ui-container-left_sidebar st-position-container">
+      <div class="st-ui-injected-search-controls">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="st-ui-container-right_sidebar st-position-container">
+      <div class="st-ui-injected-container-right_sidebar">
+        <div class="st-ui-injected-search-controls">
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY CONTENT -->
+    <div class="st-ui-container-primary_content st-position-container">
+        <section style="display: none;" class="st-ui-slide-autocomplete st-autocomplete-keyboard-navigable st-autocomplete-transient-on-select-and-results" data-st-target-element="#st-overlay-search-input" data-st-active-query-class="active">
+          <span class="st-ui-type-heading-small">suggested results</span>
+          <div class="st-autocomplete-results"><div style="display: none;" class="st-query-present"></div></div>
+        </section>
+
+        <section class="st-ui-content st-search-results"><div class="st-query-not-present">
+          <span class="st-ui-fallback"></span>
+        </div><div style="display: none;" class="st-query-present"></div></section>
+
+      <section class="st-ui-no-results st-search-suggestions"><div class="st-query-not-present">
+      </div></section>
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <div class="st-ui-container-footer_bar st-position-container">
+      <section class="st-ui-footer">
+          <span class="st-ui-search-summary st-search-summary"></span>
+        <span class="st-ui-pagination st-search-pagination"></span>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="st-default-autocomplete" data-st-target-element=".st-default-search-input" style="display: none; position: absolute; top: 49px; left: 0px; z-index: 999999;">
+  <div class="st-autocomplete-results st-ui-autocomplete"><div style="display: none;" class="st-query-present"></div></div>
+</div>
+<div class="st-default-autocomplete" data-st-target-element=".search-input" style="display: none;">
+  <div class="st-autocomplete-results st-ui-autocomplete"><div style="display: none;" class="st-query-present"></div></div>
+</div>
+</div></body></html>
