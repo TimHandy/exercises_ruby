@@ -1,0 +1,56 @@
+Create a method take that accepts a list and a number n, and returns a array of the first n elements from the list.
+
+
+
+describe "take" do
+  list = [0,1,2,3,5,8,13]
+  Test.assert_equals(take(list, 3), [0,1,2], "should return the first 3 items")
+end
+
+
+
+
+
+def take list, n
+
+end
+
+
+
+
+
+
+
+
+ANSWER :::::::::::::::::::::::::::::::::::::::::::::;
+
+
+
+
+
+
+
+
+
+
+
+
+def take list, n
+  return [] if n == 0
+  arr = []
+  list.each do |el| 
+    arr << el if el < 3
+  end
+  arr
+end
+
+
+
+
+
+or 
+
+
+def take list, n
+  list.take(n)
+end

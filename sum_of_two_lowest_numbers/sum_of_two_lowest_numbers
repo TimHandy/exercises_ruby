@@ -1,0 +1,37 @@
+Create a function that calculates the sum of the two lowest numbers given an array of 5 positive integers. No floats or empty arrays will be passed.
+
+
+Test.assert_equals(sum_two_smallest_numbers([5, 8, 12, 18, 22]), 13) 
+Test.assert_equals(sum_two_smallest_numbers([7, 15, 12, 18, 22]), 19) 
+Test.assert_equals(sum_two_smallest_numbers([25, 42, 12, 18, 22]), 30) 
+
+
+
+
+def sum_two_smallest_numbers(numbers)
+  #Your code here
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANSWER :::::::::::::::::::
+
+def sum_two_smallest_numbers(numbers)
+  numbers.sort!
+  calc = numbers[0] + numbers[1]
+  calc
+end

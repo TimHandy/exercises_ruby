@@ -1,0 +1,53 @@
+Cockroach is one of the fastest insects. Write a function which takes its speed in km per hour and returns the number of whole (floored) cm it moves per second.
+
+Example: 
+cockroach_speed(1.08) == 30
+Note! The input is a Real number (actual type is language dependent) and is >= 0. The result should be an Integer.
+
+
+describe "Basic Tests" do
+  Test.assert_equals(cockroach_speed(1.08),30)
+  Test.assert_equals(cockroach_speed(1.09),30)
+  Test.assert_equals(cockroach_speed(0),0)
+end
+
+
+
+
+
+def cockroach_speed(s)
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANSWER :::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
+
+
+
+def cockroach_speed(s)
+  kms = s / 60 / 60
+  cms = kms * 1000 * 100
+  cms.to_i
+end

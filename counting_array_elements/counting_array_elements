@@ -1,0 +1,42 @@
+Write a function that takes an array and counts the number of each unique element present.
+
+count(['james', 'james', 'john']) 
+#=> { 'james' => 2, 'john' => 1}
+
+
+
+def count(array)
+  # code here
+end
+
+
+
+Test.assert_equals(count(['a', 'a', 'b', 'b', 'b']), { 'a' => 2, 'b' => 3 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Answer::::::::::::::::::::::::::
+
+def count(array)
+  hash = Hash.new(0)
+  array.each do |el|
+    hash[el] += 1
+  end
+  hash
+end

@@ -1,0 +1,30 @@
+http://learnrubythehardway.org/book/ex46.html
+
+This is the recommended way to set up a skeleton template file structure for new projects.
+
+
+Using the Skeleton
+Whenever you want to start a new project, just do this:
+
+Make a copy of your skeleton directory. Name it after your new project.
+Rename (move) the lib/NAME.rb file and lib/NAME/ directory to be the name of your project or whatever you want to call your root module.
+Edit your Gemspec to have all the information for your project.
+Rename tests/test_NAME.rb to also have your module name.
+Double check it's all working by using ruby tests/test_yourproject.rb again. You can also use 'rake test' to run the the test.
+Start coding.
+
+
+Here's me doing it:
+
+$ cp -r skeleton ex47
+$ cd ex47
+$ ls
+NAME.gemspec   bin             doc             lib
+Rakefile       data            ext             tests
+$ mv NAME.gemspec ex47.gemspec
+$ mv bin/NAME bin/ex47
+$ mv tests/test_NAME.rb tests/test_ex47.rb
+$ mv lib/NAME lib/ex47
+$ mv lib/NAME.rb lib/ex47.rb
+$ find . -name "*NAME*" -print
+$

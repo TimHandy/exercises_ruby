@@ -1,0 +1,26 @@
+---
+1: !ruby/object:Movie
+  title: asdf
+  director: asdf
+  year: asdf
+  id: 1
+2: !ruby/object:Movie
+  title: jkl;
+  director: fghj
+  year: jkl
+  id: 2
+3: !ruby/object:Movie
+  title: asdf
+  director: adsf
+  year: asdf
+  id: 3
+4: !ruby/object:Movie
+  title: what?
+  director: asdf
+  year: asdffghghdfgjdj
+  id: 4
+5: !ruby/object:Movie
+  title: fish
+  director: m;kj
+  year: '1920'
+  id: 5
